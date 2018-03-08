@@ -49,7 +49,7 @@ struct node // structure having variable for data section and a pointer for the 
     cout<<"NULL"<<endl;
    }
 
-   int sortrimil(int n) //Arranging the list's element in ascending order using bubblesort
+   int sort(int n) //Arranging the list's element in ascending order using bubblesort
 
 {           node *p=new node;
 	node *q=new node;
@@ -117,7 +117,7 @@ int main() {
  
  cout<<"The unsorted ";
  l.display(); //calling display function to print the unsorted list
- l.sortrimil(n);  //calling sort function to rearrange the array elements
+ l.sort(n);  //calling sort function to rearrange the array elements
  cout<<"\nThe sorted ";
  l.display();  //calling the display function to print the sorted array
  

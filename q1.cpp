@@ -2,9 +2,6 @@
 #include <iostream>
 using namespace std;
 
-//Rimilmandrita Ghosh
-//Roll-1711106
-
 //Function to search an element of a sorted(ascending or descending) array.
 int binarySearch(int a[50],int beg, int last,int num)
 {

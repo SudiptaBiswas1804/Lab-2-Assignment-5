@@ -1,65 +1,59 @@
-//Implementing binary search in array
+//Programme for binary search
 #include <iostream>
 using namespace std;
 
-//Function to search an element of a sorted(ascending or descending) array.
-int binarySearch(int a[50],int beg, int last,int num)
-{
-	
-	while(beg<=last) //To run the loop till the end
-	{
-	int mid=(beg+last)/2; //The middle element is calculated each time during execution of loop.
-	if(a[mid]==num)       //Checking if the number to be searched is the middle element .
-   {
-   	return mid+1;
-   }
-   else if(num<a[mid]) //Checking if the number is smaller than the middle element.
-   {       if(a[0]<a[1])// To check whether the array is ascending or descending
-   	{
-   		last=mid-1;//If ascending this will be followed
-   	}
-   	else
-   	 beg=mid+1; //If descending this will be followed
-   }
-   else //Checking if the number is greater than middle element
-   {    
-   	if(a[0]<a[1])//To check whether the array is ascending or descending
-          {
-          	beg=mid+1;//If ascending this will be followed
-          }
-          else
-          last=mid-1;//If descending, this will be followed
-   }
+//The function for binary search
+void binarysearch(int arr[], int lsize, int rsize, int key){
+	int mid=(lsize+rsize)/2;    //Finding the middle position for comparision
+	if(key>=arr[lsize] && key<=arr[rsize]){    //To check if the element is there in the list or not
+		if(arr[mid]==key){       //If the middle element is the key 
+			cout<<"The element found at "<<mid<<endl;
+		}
+		else{
+			if(arr[mid]>key){
+				binarysearch(arr,lsize,mid-1,key);  //If the middle element is larger then recursive function applied for the left half array
+			}
+			else if(arr[mid]<key){
+				binarysearch(arr,mid+1,rsize,key);  //If the middle element is smaller then recursive function applied for the right half array
+			}
+		}
 	}
-	return -1;//To return -1 when the element is not in the array
 }
 
-//main function for implementation and execution
+//Function for finding the smallest element
+int small(int arr[]){
+	return arr[0];
+}
+
+//Main function for the programme
 int main() {
-int arr[100],n,num,pos;
-cout<<"Enter the size of array:";
-cin>>n;
-cout<<n;
-cout<<"\nEnter the elements of array in sorted order(ascending or descending).";
-cout<<"\nThe array is:";
-for (int i=0;i<n;i++) //entering the elements of array.
-{
-	cin>>arr[i];
-	cout<<arr[i]<<" ";
-}
-cout<<"\nEnter the element to be searched:";
-cin>>num;
-cout<<num;
-
-int beg=0;//initializing beg as 0 i.e the position of 1st element.
-int last=n-1;//initializing end as n-1 i.e the position of last element.
-
-pos=binarySearch(arr,beg,last,num);//Calling the funtion to do binary search.
-
-if(pos==-1)//If the returned position is -1 then to print that the element is not found.
-cout<<"\nThe element is not found.";
-else
-cout<<"\nElement found at "<<pos<<" th position";//printing the position of the element.
-
+	int n,i,j,k,temp=0;
+	int arr[n];
+	cin>>n;
+	for(i=0; i<n; i++){     //Taking in the array
+		cin>>arr[i];
+	}
+	
+	//Bubble sorting - sorting in the ascending order
+	for(i=0; i<n; i++){
+		for(j=0; j<n-1; j++){
+			if(arr[j]>arr[j+1]){
+				temp=arr[j];
+				arr[j]=arr[j+1];
+				arr[j+1]=temp;
+			}
+		}
+	}
+	
+	//Printing the array
+	cout<<"The sorted array is : "<<endl;
+	for(k=0; k<n; k++){
+		cout<<arr[k]<<" ";
+	}
+	cout<<endl;
+	cout<<"Smallest element is : "<<small(arr)<<endl;
+	int size=n;
+	int key=94;
+	binarysearch(arr,0,size-1,key);  //Calling the binary search function 
 	return 0;
 }
